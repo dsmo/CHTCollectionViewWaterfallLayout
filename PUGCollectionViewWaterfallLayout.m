@@ -687,58 +687,6 @@ static const NSInteger kMaxUnionItemCount = 20;
     return attributes;
 }
 
-//- (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-//    NSInteger begin = 0, end = self.allItemAttributes.count;
-//
-//    NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *cellArrributes = [NSMutableDictionary dictionary];
-//    NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *supplementaryHeaderArrributes = [NSMutableDictionary dictionary];
-//    NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *supplementaryFooterArrributes = [NSMutableDictionary dictionary];
-//    NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *decorationViewAttributes = [NSMutableDictionary dictionary];
-//
-//    for (NSInteger i = 0; i < self.unionRects.count; i++) {
-//        if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue])) {
-//            begin = i * kMaxUnionItemCount;
-//            break;
-//        }
-//    }
-//
-//    for (NSInteger i = self.unionRects.count - 1; i >= 0; i--) {
-//        if (CGRectIntersectsRect(rect, [self.unionRects[i] CGRectValue])) {
-//            end = MIN((i + 1) * kMaxUnionItemCount, self.allItemAttributes.count);
-//            break;
-//        }
-//    }
-//
-//    for (NSInteger i = begin; i < end; i++) {
-//        UICollectionViewLayoutAttributes *attributes = self.allItemAttributes[i];
-//        if (CGRectIntersectsRect(rect, attributes.frame)) {
-//            switch (attributes.representedElementCategory) {
-//                case UICollectionElementCategorySupplementaryView:
-//                    if ([attributes.representedElementKind isEqualToString:UICollectionElementKindSectionHeader]) {
-//                        supplementaryHeaderArrributes[attributes.indexPath] = attributes;
-//                    } else if ([attributes.representedElementKind isEqualToString:UICollectionElementKindSectionFooter]) {
-//                        supplementaryFooterArrributes[attributes.indexPath] = attributes;
-//                    }
-//                    break;
-//                case UICollectionElementCategoryCell:
-//                    cellArrributes[attributes.indexPath] = attributes;
-//                    break;
-//                case UICollectionElementCategoryDecorationView:
-//                    decorationViewAttributes[attributes.indexPath] = attributes;
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    }
-//
-//    NSMutableArray<UICollectionViewLayoutAttributes *> *result = [cellArrributes.allValues mutableCopy];
-//    [result addObjectsFromArray:supplementaryHeaderArrributes.allValues];
-//    [result addObjectsFromArray:supplementaryFooterArrributes.allValues];
-//    [result addObjectsFromArray:decorationViewAttributes.allValues];
-//    return result;
-//}
-
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSInteger begin = 0, end = self.allItemAttributes.count;
 
