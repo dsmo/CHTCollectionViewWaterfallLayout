@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i5V-us-Bjh">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Demo View Controller-->
+        <scene sceneID="FYU-vr-TWU">
+            <objects>
+                <viewController id="i5V-us-Bjh" customClass="PUGDemoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hBk-6o-mVG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-7y-GXC">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="als-n5-ZBl" customClass="PUGCollectionViewWaterfallLayout"/>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="i5V-us-Bjh" id="FOU-Ce-nOa"/>
+                                    <outlet property="delegate" destination="i5V-us-Bjh" id="wwQ-jb-WS0"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Mbp-7y-GXC" firstAttribute="leading" secondItem="hBk-6o-mVG" secondAttribute="leading" id="1ne-KZ-Ct8"/>
+                            <constraint firstItem="Mbp-7y-GXC" firstAttribute="top" secondItem="hBk-6o-mVG" secondAttribute="top" id="8ql-aX-wNv"/>
+                            <constraint firstAttribute="trailing" secondItem="Mbp-7y-GXC" secondAttribute="trailing" id="Jzz-CZ-T8M"/>
+                            <constraint firstAttribute="bottom" secondItem="Mbp-7y-GXC" secondAttribute="bottom" id="R8v-J8-yHt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="n6k-Z8-exA"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="Mbp-7y-GXC" id="QEf-9Q-bl1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAf-LL-dZ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="139"/>
+        </scene>
+    </scenes>
+</document>
