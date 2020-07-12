@@ -77,18 +77,18 @@
     if (@available(iOS 11.0, *)) {
         self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAlways;
     }
-    
-    [self updateLayoutSizeClasss:self.traitCollection];
 }
 
-- (void)updateLayoutSizeClasss:(UIUserInterfaceSizeClass)sizeClass {
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    // viewDidLoad is a bad place for doing size clas dependent stuff, as the size class might be unspecified, e.g. when the view does not yet have a superview. A better place is viewWillLayoutSubViews according to apple: developer.apple.com/videos/play/wwdc2016-233/?time=1263
+    // https://stackoverflow.com/questions/29528661/ios-detect-current-size-classes-on-viewdidload
+    [self updateLayoutLinesWithTraitCoillection:self.traitCollection];
+}
+
+- (void)updateLayoutLinesWithTraitCoillection:(UITraitCollection *)traitCollection {
     PUGCollectionViewWaterfallLayout *layout =
     (PUGCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
-    layout.numberOfLines = sizeClass == UIUserInterfaceSizeClassCompact ? 2 : 5;
-}
-
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
-    PUGCollectionViewWaterfallLayout *layout = (PUGCollectionViewWaterfallLayout *)self.collectionView.collectionViewLayout;
     
     UIUserInterfaceSizeClass sizeClassForLayout;
     switch (layout.scrollDirection) {
@@ -105,7 +105,18 @@
             break;
     }
     
-    [self updateLayoutSizeClasss:sizeClassForLayout];
+    layout.numberOfLines = sizeClassForLayout == UIUserInterfaceSizeClassCompact ? 2 : 5;
+}
+
+- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super willTransitionToTraitCollection:newCollection withTransitionCoordinator:coordinator];
+    
+    if ((self.traitCollection.verticalSizeClass != newCollection.verticalSizeClass)
+        || (self.traitCollection.horizontalSizeClass != newCollection.horizontalSizeClass)) {
+        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+            [self updateLayoutLinesWithTraitCoillection:newCollection];
+        } completion:nil];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
